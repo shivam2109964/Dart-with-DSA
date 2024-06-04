@@ -1,3 +1,5 @@
+//Constant time exmaple
+
 void checkFirst(List<String> names) {
   if (names.isNotEmpty) {
     print(names.first);
