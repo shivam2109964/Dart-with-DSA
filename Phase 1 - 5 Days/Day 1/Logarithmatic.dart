@@ -9,6 +9,8 @@ bool navieContains(int value, List<int> list) {
   return false;
 }
 
+//An algorithm that can repeateldly drop half of the required comparisons will have logarithmic time complexity.
+//Algorithm in this category are few but extremely powerful in situations that allow for it.
 bool betterNavieContains(int value, List<int> list) {
   if (list.isEmpty) return false;
   final middleIndex = list.length ~/ 2;
