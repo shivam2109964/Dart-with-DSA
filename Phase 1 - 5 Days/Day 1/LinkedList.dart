@@ -3,7 +3,6 @@ class Node<T> {
   Node<T>? next;
   Node({required this.value, this.next});
 
-  //Now Making Node printable and recursively
   @override
   String toString() {
     if (next == null) return '$value';
@@ -11,17 +10,34 @@ class Node<T> {
   }
 }
 
+//Now create a LinkedList
+class LinkedList<E> {
+  Node<E>? head;
+  Node<E>? tail;
+
+  bool get isEmpty => head == null;
+
+  //Pushing the value
+  void push(E value) {
+    head = Node(value: value, next: head);
+    tail ??= head;
+  }
+
+  @override
+  String toString() {
+    if (isEmpty) return 'Empty List';
+    return head.toString();
+  }
+}
+
 void main() {
-  final node1 = Node(value: 1);
-  final node2 = Node(value: 2);
-  final node3 = Node(value: 3);
-  final node4 = Node(value: 4);
-  final node5 = Node(value: 5);
+  final list = LinkedList();
+  list.push(1);
+  list.push(2);
+  list.push(3);
+  list.push(4);
+  list.push(5);
+  list.push(6);
 
-  node1.next = node2;
-  node2.next = node3;
-  node3.next = node4;
-  node4.next = node5;
-
-  print(node1);
+  print(list.toString());
 }
