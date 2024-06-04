@@ -6,6 +6,7 @@ void main() {
   print("");
   print(people);
 
+  //Inserting a middle value
   people.insert(0, "Hello");
   int middle = people.length ~/ 2;
   people.insert(middle, "Ji");
