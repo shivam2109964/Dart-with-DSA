@@ -1,7 +1,7 @@
-//Creating Node
 class Node<T> {
   T value;
   Node<T>? next;
+
   Node({required this.value, this.next});
 
   @override
@@ -11,37 +11,33 @@ class Node<T> {
   }
 }
 
-//Creating LinkedList
 class LinkedList<E> {
   Node<E>? head;
   Node<E>? tail;
 
-  //Getter of isEmpty
   bool get isEmpty => head == null;
 
-  //Push Operation
+  //Adding push operation
   void push(E value) {
     head = Node(value: value, next: head);
     tail ??= head;
   }
 
-  //Append Operation
+  //Adding append operation
   void append(E value) {
     if (isEmpty) {
       push(value);
       return;
     }
     tail!.next = Node(value: value);
-
     tail = tail!.next;
   }
 
-  //NodeAt operation
+  //Adding nodeAt operation
   Node<E>? nodeAt(int index) {
-    //1
     var currentNode = head;
     var currentIndex = 0;
-    //2
+
     while (currentNode != null && currentIndex < index) {
       currentNode = currentNode.next;
       currentIndex += 1;
@@ -49,19 +45,19 @@ class LinkedList<E> {
     return currentNode;
   }
 
-  //InsertAfter Opearation
-  Node<E> insertAfter(Node<E>? node, E value) {
+  //Adding insertAfter Operation
+  Node<E>? insertAfter(Node<E>? node, E value) {
     if (tail == node) {
       append(value);
       return tail!;
     }
     node!.next = Node(value: value, next: node.next);
-    return node.next!;
+    return node.next;
   }
 
   @override
   String toString() {
-    if (isEmpty) return 'Empty List';
+    if (isEmpty) return 'Empty';
     return '${head.toString()}';
   }
 }
@@ -72,9 +68,11 @@ void main() {
   list.push(2);
   list.push(3);
   list.push(4);
+  list.push(5);
+  list.push(6);
 
-  var middleNode = list.nodeAt(2);
-  list.insertAfter(middleNode, 44);
+  var value = list.nodeAt(3);
+  list.insertAfter(value, 333);
 
-  print(list);
+  print("${list.toString()}");
 }
