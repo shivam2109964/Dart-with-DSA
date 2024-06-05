@@ -52,6 +52,42 @@ class LinkedList<E> {
     return node!.next;
   }
 
+  //Now implement pop, removeLast, removeAt
+  E? pop() {
+    final value = head?.value;
+    head = head?.next;
+    if (isEmpty) {
+      tail = null;
+    }
+    return value;
+  }
+
+  E? removeLast() {
+    //1
+    if (head?.next == null) {
+      return pop();
+    }
+    //2
+    var current = head;
+    while (current!.next != tail) {
+      current = current.next;
+    }
+    //3
+    final value = tail!.value;
+    tail = current;
+    tail!.next = null;
+    return value;
+  }
+
+  E? removeAfter(Node<E>? node) {
+    final value = node!.next?.value;
+    if (node.next == tail) {
+      tail = node;
+    }
+    node.next = node.next?.next;
+    return value;
+  }
+
   @override
   String toString() {
     if (isEmpty) return 'Empty List';
@@ -76,5 +112,13 @@ void main() {
   var insertLocation = linkedList.nodeAt(2);
   var insertionValue = linkedList.insertAt(insertLocation, 293);
   print("insertion value is -> $insertionValue");
+  print(linkedList.toString());
+
+  print("----- Linked List Deletion Operations -----");
+  linkedList.pop();
+  print(linkedList.toString());
+  linkedList.removeLast();
+  print(linkedList.toString());
+  linkedList.removeAfter(insertLocation);
   print(linkedList.toString());
 }
